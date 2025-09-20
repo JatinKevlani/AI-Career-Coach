@@ -40,22 +40,19 @@ st.header("Enter your personal information")
 personal_info = st.text_area(
     "Personal info",
     placeholder="Describe your skills, interests, and goals...",
-    height=200,
-    value="Bachelor's degree in Computer Science, proficient in Python, Java, and SQL. Strong problem-solving and communication skills. Passionate about artificial intelligence and machine learning. My goal is to work on innovative tech projects that solve real-world problems and contribute to advancements in AI."
+    height=200
 )
 st.header("Enter your previous projects experience")
 previous_experience = st.text_area(
     "Previous experience",
     placeholder="Describe your previous projects and experiences...",
-    height=200,
-    value="Developed a machine learning model to predict customer churn for a retail company, achieving 85% accuracy using Python and scikit-learn. Built a web application using Django and PostgreSQL for a university project, improving user engagement by 30%. Faced challenges in optimizing model performance and learned to use hyperparameter tuning effectively."
+    height=200
 )
 st.header("Enter career path options")
 career_path_options = st.text_area(
     "Career path options",
     placeholder="Describe your desired career paths (e.g., 1. Data Scientist\nDescription of Data Scientist\n2. Software Engineer\nDescription of Software Engineer...)",
-    height=200,
-    value="1. Data Scientist\nUses machine learning and statistical techniques to analyze data and solve complex business problems.\n2. Software Engineer\nDevelops and maintains software applications and systems, focusing on coding and system architecture.\n3. AI Researcher\nConducts research to advance artificial intelligence algorithms and models, often in academic or industry labs."
+    height=200
 )
 
 def parse_career_path(input_text):
