@@ -8,13 +8,11 @@ import os
 import google.generativeai as genai
 import time
 import google.api_core.exceptions
-from pydantic import BaseModel  # Added missing import
+from pydantic import BaseModel
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Get API key from environment variable
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not GOOGLE_API_KEY:
     st.error("GOOGLE_API_KEY not found. Please create a .env file with your Google API key.")
@@ -88,7 +86,7 @@ def invoke_with_retry(chain, input_data, max_retries=3, initial_delay=2.0):
                 raise e
             st.warning(f"Quota exceeded, retrying in {delay} seconds... (Attempt {retries}/{max_retries})")
             time.sleep(delay)
-            delay *= 2  # Exponential backoff
+            delay *= 2
     return None
 
 if st.button("Get Recommendation"):
