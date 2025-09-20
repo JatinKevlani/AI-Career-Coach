@@ -9,9 +9,19 @@ import google.generativeai as genai
 import time
 import google.api_core.exceptions
 from pydantic import BaseModel  # Added missing import
+from dotenv import load_dotenv
 
-os.environ["GOOGLE_API_KEY"] = st.secrets["general"]["GOOGLE_API_KEY"]
-genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+# Load environment variables from .env file
+load_dotenv()
+
+# Get API key from environment variable
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+if not GOOGLE_API_KEY:
+    st.error("GOOGLE_API_KEY not found. Please create a .env file with your Google API key.")
+    st.stop()
+
+os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
+genai.configure(api_key=GOOGLE_API_KEY)
 
 class CareerPathOption(BaseModel):
     career_name: str
@@ -112,7 +122,7 @@ if st.button("Get Recommendation"):
             ''')
 
             try:
-                model = ChatGoogleGenerativeAI(temperature=1, model="gemini-1.5-flash", google_api_key=os.environ["GOOGLE_API_KEY"], api_version="v1beta")
+                model = ChatGoogleGenerativeAI(temperature=1, model="gemini-1.5-flash")
             except Exception as e:
                 st.error(f"Error initializing model: {str(e)}")
                 available_models = list_available_models()
